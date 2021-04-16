@@ -1,9 +1,8 @@
 const { Schema, model } = require('mongoose');
-const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
     {
-        // field belonging to the user; Used to differ the comments from one user to another
+        // field belonging to the user; Used to differ the thoughts from one user to another
         username: {
             type: String,
             unique: true,
@@ -16,18 +15,18 @@ const UserSchema = new Schema(
             unique: true,
             match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
         },
-        thoughts: {
-            references: {
-                model: 'Thought',
-                key: '_id'
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thought'
             }
-        },
-        friends: {
-            references: {
-                model: 'User',
-                key: '_id'
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
             }
-        }
+        ]
     }
 );
 

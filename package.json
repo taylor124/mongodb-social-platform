@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/taylor124/mongodb-social-platform#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "dateformat": "^4.5.1",
     "express": "^4.17.1",
     "mongoose": "^5.12.3",
-    "mongoose-validator": "^2.1.0"
+    "mongoose-validator": "^2.1.0",
+    "morgan": "^1.10.0"
   }
 }

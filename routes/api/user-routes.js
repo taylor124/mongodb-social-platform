@@ -1,63 +1,23 @@
-
 const router = require('express').Router();
-const User = require('../../models/User');
+const {
+    getAllUser,
+    getUserById,
+    createUser,
+    updateUser,
+    deleteUser
+} = require('../../controllers/user-controller');
 
-router.get('/users', (req, res) => {
-    User.findAll({
-        where: {
-            // use the ID from the session
-            _id: req.session.user_id
-        },
-        attributes: [
-            'username',
-            'email',
-            'thoughts',
-            'friends'
-        ],
-        include: [
-            {
-                model: 'Thought',
-                attributes: ['thoughtText', 'reactions'],
-                include: {
-                    model: 'Reaction',
-                    attributes: ['reactionId', 'reactionBody', 'createdAt']
-                }
-            }
-        ]
-    })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
+// /api/thoughts
+router
+    .route('/')
+    .get(getAllUser)
+    .post(createUser);
 
-router.get('/users/:id', (req, res) => {
-    User.findOne({
-        where: {
-            // use the ID from the session
-            _id: req.params.id
-        },
-        attributes: [
-            'username',
-            'email',
-            'thoughts',
-            'friends'
-        ],
-        include: [
-            {
-                model: 'Thought',
-                attributes: ['thoughtText', 'reactions'],
-                include: {
-                    model: 'Reaction',
-                    attributes: ['reactionId', 'reactionBody', 'createdAt']
-                }
-            }
-        ]
-    })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
+// /api/thoughts/:id
+router
+    .route('/:id')
+    .get(getUserById)
+    .put(updateUser)
+    .delete(deleteUser);
 
-module.exports = router
+module.exports = router;
