@@ -16,6 +16,7 @@
 
   ## Installation
   Go to Code and download zip, extract zip file and then follow the tutorial below
+  https://www.youtube.com/watch?v=3RFsZj83WW4
 
   ## Usage
   mongodb-social-platform is used to make Thoughts, those thoughts can have reactions like how replies work, finally, users can make friends.
