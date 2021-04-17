@@ -1,6 +1,6 @@
 
   <h1>mongodb-social-platform <h1>
-  ![badge](https://img.shields.io/badge/license-Apache License 2.0-blue)<br />
+  <br />
 
   ## <h2>Description</h2>
   mongodb-social-platform is a NoSQL derived platform that features a thought and reaction based response from user to user
@@ -21,8 +21,7 @@
   mongodb-social-platform is used to make Thoughts, those thoughts can have reactions like how replies work, finally, users can make friends.
 
   ## License
-  ![badge(https://img.shields.io/badge/license-Apache%20License%202.0-darkyellow)]
-  <br />
+ <br />
   This application is covered by the Apache License 2.0 license.
 
   ## Contributing
