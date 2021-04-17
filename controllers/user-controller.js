@@ -3,10 +3,13 @@ const User = require('../models/User');
 const userController = {
     // get all Users
     getAllUser(req, res) {
-        console.log(req.url)
         User.find({})
             .populate({
                 path: 'users',
+                select: '-__v'
+            })
+            .populate({
+                path: 'friends',
                 select: '-__v'
             })
             .select('-__v')
@@ -23,6 +26,10 @@ const userController = {
         User.findOne({ _id: params.id })
             .populate({
                 path: 'users',
+                select: '-__v'
+            })
+            .populate({
+                path: 'friends',
                 select: '-__v'
             })
             .select('-__v')
@@ -42,6 +49,19 @@ const userController = {
     createUser({ body }, res) {
         User.create(body)
             .then(dbUserData => res.json(dbUserData))
+            .catch(err => res.status(400).json(err));
+    },
+    addFriend({ params, body }, res) {
+        User.findOneAndUpdate(
+            { _id: params.id },
+            { $push: { friends: body.id } })
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({ message: 'No User found with this id!' });
+                    return;
+                }
+                res.json(dbUserData);
+            })
             .catch(err => res.status(400).json(err));
     },
     // update User by id
